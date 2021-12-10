@@ -15,7 +15,7 @@ public class UsersDAOImpl implements UsersDAO {
 
 	@Override
 	public String nameCheck(String user_name) throws Exception {
-		return sqlSession.selectOne(SESSION+ "nameCheck", user_name);
+		return sqlSession.selectOne(SESSION + "nameCheck", user_name);
 	}
 
 	@Override

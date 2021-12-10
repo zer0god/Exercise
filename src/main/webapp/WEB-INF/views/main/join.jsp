@@ -38,7 +38,7 @@
 		<div class="col-lg-3"></div> <!-- 안쓰는 옆 가로 공간 배정 -->
 		
 		<div class="col-lg-6"> <!-- 화연의 6/12 사용 -->
-		<form action="/action_page.php">
+		<form action="/join">
 		
 		  <!-- 닉네임 입력에 대한 공간 할당 -->
 		  <div class="row mb-2">
