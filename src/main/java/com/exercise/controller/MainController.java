@@ -22,6 +22,8 @@ public class MainController {
 	@Inject
 	UsersService usersService;
 	
+	// 경로 찾아가기
+	// url 패턴이 'path/'인 경우
 	@RequestMapping(value =  "/", method = RequestMethod.GET)
 	public String main(HttpSession session) throws Exception {
 		
@@ -30,8 +32,11 @@ public class MainController {
 		return "main/main";
 	}
 	
+	// 경로 찾아가기
+	// url 패턴이 'path/join'인 경우
 	@RequestMapping(value =  "/join", method = RequestMethod.GET)
 	public String join() throws Exception {
+		
 		return "main/join";
 	}
 

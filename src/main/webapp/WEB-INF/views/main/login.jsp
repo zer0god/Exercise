@@ -20,6 +20,21 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
+
+__btn {
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+    width: 100px;
+    height: $btnH;
+    margin: 0 auto;
+    background: transparent;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 15px;
+    cursor: pointer;
+    }
+
 input, button {
 	border: none;
 	outline: none;
@@ -36,12 +51,73 @@ input, button {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.4);
 	text-align: center;
 }
+
+span {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 12px;
+  color: #cfcfcf;
+}
+
+.forgot-pass {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 12px;
+  color: #cfcfcf;
+}
+
+.forgot-item {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.email {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 15px;
+  color: #cfcfcf;
+}
+
 .submit {
   margin-top: 40px;
   margin-bottom: 20px;
   background: #d4af7a;
   text-transform: uppercase;
 }
+
+button {
+  display: block;
+  margin: 0 auto;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+
+
+label {
+  display: block;
+  margin: 25px auto 0;
+  text-align: center;
+
+  span {
+    color: #cfcfcf;
+	text-align: center;
+  }
+ }
+}
+
+.sign-in {
+  transition-timing-function: ease-out;
+
+  @include signUpActive {
+    transition-timing-function: ease-in-out;
+    transition-duration: $switchAT;
+    transform: translate3d($formW,0,0);
+  }
+}
+  
 </style>
 </head>
 <body>
@@ -72,8 +148,7 @@ input, button {
 
 					<!-- 이메일 입력 -->
 					<label> 
-						<span>Email</span>
-						<input type="email">
+						<p class="email">Email</p>
 					</label>
 					<div class="form-group">
 						<input type="Email" class="custominput"> 
@@ -81,33 +156,25 @@ input, button {
 
 					<!-- 비밀번호 입력 -->
 					 <label>
-				      <span>Password</span>
-				      <input type="password">
+					      <p class="email">Password</p>
 				    </label>
 					<div class="form-group">
 						<input type="password" class="custominput">
 					</div>
 					
 					<!-- 비밀번호 찾기 -->
-					<label>
-				      <span>Forget password?</span>
-				      <input type="password">
-				    </label>
+					<p class="forgot-pass">Forgot password?</p>
 					
 
 					<!-- 로그인 정보 저장 -->
-					<div class="remember">
-						<label class="custom-checkbox">Remember me</label> 
-						<input type="checkbox"> <span class="checkmark"></span>
+					<div class="forgot-pass">
+						<div>Remember me</div> 
+						<input class="forgot-item" type="checkbox">
 					</div>
 					
 					<!-- 제출 버튼 -->
-					<div class="form-group">
-						<button type="submit" class="submit">Sign In</button>
-					</div>
-					
-					
-
+					<button type="submit" class="submit btn-lg">Sign In</button>
+								
 				</form>
 			</div>
 			<div class="col-lg-3"></div>
