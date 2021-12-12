@@ -39,5 +39,17 @@ public class MainController {
 		
 		return "main/join";
 	}
+	
+	@RequestMapping(value =  "/findEmail", method = RequestMethod.GET)
+	public String findEmail() throws Exception {
+		
+		return "main/findEmail";
+	}
+	
+	@RequestMapping(value =  "/findPw", method = RequestMethod.GET)
+	public String findPw() throws Exception {
+		
+		return "main/findPw";
+	}
 
 }
