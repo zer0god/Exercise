@@ -31,7 +31,7 @@ __btn {
     text-transform: uppercase;
     font-size: 15px;
     cursor: pointer;
-}
+    }
 
 input, button {
 	border: none;
@@ -91,7 +91,7 @@ span {
   margin-right: 4px;
 }
 
-.email {
+.nickname {
   margin-top: 15px;
   text-align: center;
   font-size: 15px;
@@ -114,10 +114,6 @@ button {
   cursor: pointer;
 }
 
-.find_div {
-	border-right: 1px solid rgba(0, 0, 0, 0.4);
-}
-
 
 label {
   display: block;
@@ -129,16 +125,6 @@ label {
 	text-align: center;
   }
  }
-
-.sign-in {
-  transition-timing-function: ease-out;
-
-  @include signUpActive {
-    transition-timing-function: ease-in-out;
-    transition-duration: $switchAT;
-    transform: translate3d($formW,0,0);
-  }
-}
   
 </style>
 </head>
@@ -165,50 +151,27 @@ label {
 
 			<div class="col-lg-6">
 				<!-- 화연의 6/12 사용 -->
-				<form method="POST" action="./loginAction">
-					<h3>로그인</h3>
+				<form method="POST" action="./findEmailAction">
+					<h3>이메일 찾기</h3>
 
-					<!-- 이메일 입력 -->
+					<!-- 닉네임 입력 -->
 					<label> 
-						<p class="email">이메일</p>
+						<p class="nickname">닉네임</p>
 					</label>
 					<div class="form-group">
-						<input type="Email" class="custominput"> 
-					</div>
-
-					<!-- 비밀번호 입력 -->
-					 <label>
-					      <p class="email">비밀번호</p>
-				    </label>
-					<div class="form-group">
-						<input type="password" class="custominput">
-					</div>
-					
-
-					<!-- 로그인 정보 저장 -->
-					<div class="forgot-pass">
-						<span class="forgot-item">아이디 저장</span> 
-						<input class="forgot-item" type="checkbox">
-					</div>
-					
-					<div class="row">
-						<div class="col-lg-4 find_div">
-							<a href="./findEmail">이메일 찾기</a>
-						</div>
-						<div class="col-lg-4 find_div">
-							<a href="./findPw">비밀번호 찾기</a>
-						</div>
-						<div class="col-lg-4">
-							<a href="./join">회원가입</a>
-						</div>
+						<input type="text" class="custominput"> 
 					</div>
 					
 					<div class="row">
 						<div class="col-lg-3"></div>
 						<div class="col-lg-6">
-							<button type="submit" class="submit btn btn-lg btn-block">로그인</button>
+							<button type="submit" class="submit btn btn-lg btn-block">찾기</button>
 						</div>
 						<div class="col-lg-3"></div>
+					</div>
+					
+					<div class="float-center">
+						<a href="./findPw">비밀번호 찾기</a>
 					</div>
 								
 				</form>
