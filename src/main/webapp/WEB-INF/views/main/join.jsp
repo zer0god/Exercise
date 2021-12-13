@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,14 +8,12 @@
 <title>title</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="${path}/resources/css/join.css">
+<link rel="stylesheet" href="${path}/resources/js/join.js">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<style>
-form {
-	 margin-top: 200px;
-}
-</style>
+
 </head>
 <body>
 <!-- 메인 네비게이션 -->
@@ -44,74 +43,100 @@ form {
 		
 		<div class="col-lg-6"> <!-- 화연의 6/12 사용 -->
 			<form action="./joinAction" method="POST">
-			  
-			  <!-- 이메일 입력에 대한 공간 할당 -->
-			  <div class="row mb-2">
-			  	<!-- 이메일 입력 -->
-			  	<div class="text-center align-self-center col-lg-3">Email</div>
-			  	<div class="col-lg-6">
-			    	<input type="email" class="form-control" placeholder="Email" id="user_email">
-			  	</div>
-			  	<div class="col-lg-3">
-			    	<button type="button" class="btn btn-outline-primary btn-block">Check</button>
-			  	</div>
-			  </div>
-			  
-			  <!-- 비밀번호 입력에 대한 공간 할당 -->
-			  <div class="row mb-2">
-			  	<!-- 비밀번호 입력 -->
-			  	<div class="text-center align-self-center col-lg-3">Password</div>
-			  	<div class="col-lg-6">
-			    	<input type="password" class="form-control" placeholder="Password" id="user_pw">
-			  	</div>
-			  </div>
-			  
-			  <!-- 비밀번호 확인에 대한 공간 할당 -->
-			  <div class="row mb-2">
-			  	<!-- 비밀번호 입력 -->
-			  	<div class="text-center align-self-center col-lg-3">Password check</div>
-			  	<div class="col-lg-6">
-			    	<input type="password" class="form-control" placeholder="Password Check" id="user_pw2">
-			  	</div>
-			  </div>
-			
-			  <!-- 닉네임 입력에 대한 공간 할당 -->
-			  <div class="row mb-2">
-			  	<!-- 닉네임 입력 -->
-			  	<div class="text-center align-self-center col-lg-3">Nickname</div>
-			  	<div class="col-lg-6">
-			    	<input type="text" class="form-control" placeholder="Nickname" id="user_name">
-			  	</div>
-			  	<div class="col-lg-3">
-			    	<button type="button" class="btn btn-outline-primary btn-block">Check</button>
-			  	</div>
-			  </div>
-			  
-			  <!-- 성별 선택에 대한 공간 할당 -->
-			  <div class="row mb-2">
-			  	<!-- 성별 입력 -->
-			  	<div class="text-center align-self-center col-lg-3">Gender</div>
-			  		<div class="btn-group col-lg-6">
-					  <button type="button" class="btn btn-outline-primary">W</button>
-					  <button type="button" class="btn btn-outline-primary">M</button>
+				<h3>회원가입</h3>
+				
+				<!-- 이메일 입력 -->
+				<label> 
+					<p class="email">이메일</p>
+				</label>
+				<div class="row form-group">
+					<div class="col-lg-9">
+						<input type="Email" class="custominput" id="user_email"  name="user_email">
 					</div>
-			  	</div>
-			  		
-			 <!-- 휴대폰 입력에 대한 공간 할당 --> 		
-			 <div class="row mb-2">
-			 	<!-- 휴대폰 입력 --> 		
-			  	<div class="text-center align-self-center col-lg-3">Phone Number</div>
+					<div class="col-lg-3">
+						<button type="button" class="btn btn-outline-secondary btn-block" id="emailCheckBtn">중복확인</button>
+					</div>
+				</div>
+
+				<!-- 비밀번호 입력 -->
+				<label>
+				      <p class="email">비밀번호</p>
+			    </label>
+				<div class="row form-group">
+					<div class="col-lg-12">
+						<input type="password" class="custominput" id="user_pw"  name="user_pw">
+					</div>
+				</div>
+
+				<!-- 비밀번호 확인 입력 -->
+				<label>
+				      <p class="email">비밀번호 확인</p>
+			    </label>
+			    
+				<div class="row form-group">
+					<div class="col-lg-12">
+						<input type="password" class="custominput" id="user_pw2">
+					</div>
+				</div>
+
+				<!-- 닉네임 입력 -->
+				<label>
+				      <p class="email">닉네임</p>
+			    </label>
+				<div class="row form-group">
+					<div class="col-lg-9">
+						<input type="text" class="custominput" id="user_name"  name="user_name">
+					</div>
+					<div class="col-lg-3">
+						<button type="button" class="btn btn-outline-secondary btn-block" id="nameCheckBtn">중복확인</button>
+					</div>
+				</div>
+
+				<!-- 전화번호 입력 -->
+				
+				<label>
+				      <p class="email">휴대전화</p>
+			    </label>
+				<div class="row form-group">
+					<div class="col-lg-12">
+						<input type="text" class="custominput" id="user_phone" name="user_phone">
+					</div>
+				</div>
+				
+				<!-- 전화번호 입력 -->
+				<label>
+					<p class="email">성별</p>
+			    </label>
+				<div class="row form-group" data-toggle="buttons">
 					<div class="col-lg-6">
-					   <input type="text" class="form-control" placeholder="PhoneNumber" id="user_phone">
-					 </div>
-			  </div>
-			  
-			  <!-- 이전, 가입 버튼에 대한 공간 할당 -->
-			  <div class="float-right">
-			  		<input type="submit" class="btn btn-outline-secondary" value="이전">
-			  		<input type="submit" class="btn btn-outline-primary" value="회원가입">
-			   </div>
-	  
+						<label class="btn btn-outline-secondary btn-block">
+							<input type="radio" id="user_gender_W" name="user_gender" value="W" style="display:none;">W
+						</label>
+					</div>
+					<div class="col-lg-6">
+						<label class="btn btn-outline-secondary btn-block">
+							<input type="radio" id="user_gender_M" name="user_gender" value="M"style="display:none;">M
+						</label>
+					</div>
+				</div>
+				
+			  	<!-- 이전, 가입 버튼에 대한 공간 할당 -->
+			  	<div class="row form-group button-group">
+					<div class="col-lg-2"></div>
+					<div class="col-lg-8">
+			  			<input type="submit" class="btn btn-outline-primary btn-block" value="회원가입">
+					</div>
+					<div class="col-lg-2"></div>
+				</div>
+				
+			  	<div class="row form-group">
+					<div class="col-lg-2"></div>
+					<div class="col-lg-8">
+			  			<input type="submit" class="btn btn-outline-secondary btn-block" value="이전">
+					</div>
+					<div class="col-lg-2"></div>
+				</div>
+
 			</form>
 		</div>
 		<div class="col-lg-3"></div>
