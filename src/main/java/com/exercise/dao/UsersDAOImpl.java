@@ -38,4 +38,10 @@ public class UsersDAOImpl implements UsersDAO {
 		return sqlSession.selectOne(SESSION + ".findEmailAction", user_email);
 	}
 
+	@Override
+	public Users login(Users users) throws Exception {
+		
+		return null;
+	}
+
 }

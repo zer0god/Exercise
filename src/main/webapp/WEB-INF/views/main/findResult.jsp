@@ -36,39 +36,33 @@
 			<!-- 안쓰는 옆 가로 공간 배정 -->
 
 			<div class="col-lg-6">
-				<!-- 화연의 6/12 사용 -->
-				<form method="POST" action="./findPwAction">
-					<h3>비밀번호 찾기</h3>
-
-					<!-- 이메일 입력 -->
-					<label>이메일</label>
-					<div class="form-group">
-						<input type="Email" class="custominput" id="user_email" name="user_email"> 
-					</div>
-
-					<!-- 닉네임 입력 -->
-					 <label>닉네임</label>
-					<div class="form-group">
-						<input type="text" class="custominput" id="user_name" name="user_name">
-					</div>
-					
-					<div class="row">
-						<div class="col-lg-3"></div>
-						<div class="col-lg-6">
-							<button type="submit" class="btn btn-submit btn-lg btn-block">찾기</button>
-						</div>
-						<div class="col-lg-3"></div>
-					</div>
-					
-					<div class="float-center">
-						<a href="./findEmail">이메일 찾기</a>
-					</div>
-					
-					<div class="float-center">
-							<a href="./">로그인 페이지로</a>
-					</div>
-								
-				</form>
+				<!-- 화면의 6/12 사용 -->
+				<c:if test="${resultType eq 'email'}">
+				<h3>이메일 찾기</h3>
+				
+				<c:if test="${result eq true}">
+				<p>해당 닉네임으로 등록된 이메일 : </p>
+				<h2>${resultMsg}</h2>
+				</c:if>
+				<c:if test="${result eq false}">
+				<p>해당 닉네임으로 등록된 이메일이 존재하지 않습니다.</p>
+				<a href="./findEmail">이메일 찾기로 돌아가기</a>
+				</c:if>
+				</c:if>
+				
+				<c:if test="${resultType eq 'email'}">
+				<h3>비밀번호 찾기</h3>
+				
+				<c:if test="${result eq true}">
+				<p>해당 닉네임으로 등록된 이메일로 임시비밀번호를 전송했습니다.</p>
+				<p>전송된 비밀번호로 로그인 후 비밀번호를 변경해 주세요.</p>
+				</c:if>
+				<c:if test="${result eq false}">
+				<p>해당 닉네임과 이메일로 등록된 정보를 찾을수 없습니다.</p>
+				<a href="./findPw">비밀번호 찾기로 돌아가기</a>
+				</c:if>
+				</c:if>
+												
 			</div>
 			<div class="col-lg-3"></div>
 		</div>

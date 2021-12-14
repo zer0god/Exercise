@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,7 +42,7 @@ public class MainController {
 		
 		return "main/join";
 	}
-	// url 패턴이 'path/join'인 경우
+	// url 패턴이 'path/login'인 경우
 	@RequestMapping(value =  "/login", method = RequestMethod.GET)
 	public String login() throws Exception {
 		
@@ -65,30 +66,32 @@ public class MainController {
 	
 	// url 패턴이 'path/emailCheck'인 경우
 	// http://localhost:8088/emailCheck?
-	@RequestMapping(value = "emailCheck", method = RequestMethod.GET)
+	@RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
 	// 반환값을 페이지에 출력
 	@ResponseBody
 	public String emailCheck(String user_email) throws Exception { //parameter
 		
 		int result = usersService.emailCheck(user_email);
-		return result + "";
+		return result + ""; // 문자열 전환
 			
 	}
 	
 	// url 패턴이 'path/nameCheck'인 경우
 	// http://localhost:8088/nameCheck?
-	@RequestMapping(value = "nameCheck", method = RequestMethod.GET)
+	@RequestMapping(value = "/nameCheck", method = RequestMethod.GET)
 	//반환값을 페이지에 출력
 	@ResponseBody
 	public String nameCheck(String user_name) throws Exception	{ //parameter
 		
 		int result = usersService.nameCheck(user_name);
 		return result + "";
+		
 	}
 	
 	// url 패턴이 'path/joinAction'인 경우
-	@RequestMapping(value = "joinAction", method = RequestMethod.POST)
+	@RequestMapping(value = "/joinAction", method = RequestMethod.POST)
 	public String joinAction(Users users) throws Exception {
+		
 		System.out.println(users.getUser_email());
 		System.out.println(users.getUser_name());
 		System.out.println(users.getUser_pw());
@@ -103,25 +106,56 @@ public class MainController {
 	}
 		
 	// url 패턴이 'path/findEmailAction'인 경우
-	@RequestMapping(value = "findEmailAction", method = RequestMethod.POST)
+	@RequestMapping(value = "/findEmailAction", method = RequestMethod.POST)
 	// POST 결과값 필요없음 responsebody 필요없음
 	public String findEmailAction(String user_name, RedirectAttributes ra) throws Exception {
 		
-		int result = usersService.findEmailAction(user_name);
+		String result = usersService.findEmailAction(user_name);
 		String url = null;
 		
-		if(result == 0) {
-			session.setAttribute("user_email", users.getUser_email());
-			url = "redirect:/findResult";
+		
+		if(result != null) {
+			ra.addFlashAttribute("resultType", "email");
+			// url 뒤에 ?resultType=email이지만 보이지않음
+			ra.addFlashAttribute("result", "true");
+			ra.addFlashAttribute("resultMsg", result);
+			
+			return url = "redirect:/findResult";
 		}
 		
 		else {
 			// 메세지 전달 (닉네임이 잘못되었습니다.)
-			ra.addFlashAttribute("");
+			ra.addFlashAttribute("resultType", "email");
+			ra.addFlashAttribute("reuslt", "false");
 			
+			return url = "redirect:/findResult";
 			
 		}
 	}
+	
+	// url 패턴이 'path/loginAction'인 경우
+	@RequestMapping(value="/loginAction", method=RequestMethod.POST)
+	public String loginAction(Users users,HttpSession session, RedirectAttributes ra) throws Exception{
+		
+		int result = usersService.loginAction(users);
+		String url = null;
+		
+		if(result == 0) {
+			
+			session.setAttribute("user_Email", users.getUser_email());
+			url = "redirect:/main";
+			
+		}
+		
+		else {
+			ra.addFlashAttribute("msg", "로그인 정보가 일치하지 않습니다.");
+			return url ="redirect:/login";
+		}
+	
+		return url;
+	}
+	
+	
 	
 	
 	

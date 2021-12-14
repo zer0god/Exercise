@@ -35,15 +35,39 @@ public class UsersServiceImpl implements UsersService {
 	//			}
 	@Override
 	public int nameCheck(String user_name) throws Exception {
+		
 		int result = 0;
 		if(dao.nameCheck(user_name) != null) result = 1;
-		
 		return result;
+		
+	}
+	
+	@Override
+	public String findEmailAction(String user_email) throws Exception {
+		
+		return null;
 	}
 	
 	@Override
 	public void joinAction(Users users) throws Exception {
 		dao.join(users);
+	}
+	
+	// 로그인 처리
+	// parameter : user_name
+	// return : {
+	//			0 : 일치
+	//			1 : 불일치
+	//			}
+	@Override
+	public int loginAction(Users users) throws Exception {
+		
+		int result = 0;
+		users = dao.login(users);
+		
+		if(users == null) result = 1;
+		
+		return result;
 	}
 	
 	// 닉네임 중복체크 처리
@@ -52,10 +76,7 @@ public class UsersServiceImpl implements UsersService {
 	//			0 : 사용가능
 	//			1 : 중복
 	//			}
-	@Override
-	public int findEmailAction(String user_email) throws Exception {
-		return 0;
-	}
+
 	
 	// 이메일 찾기
 	// parameter : user_nickname
@@ -65,9 +86,10 @@ public class UsersServiceImpl implements UsersService {
 	//			}
 	@Override
 	public int setAuthnum(String user_mail) throws Exception {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
+
 
 
 

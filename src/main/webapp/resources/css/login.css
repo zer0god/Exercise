@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+input, button {
+	border: none;
+	outline: none;
+	background: none;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
+a {
+	font-size: 12px;
+	color: #cfcfcf;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
+h3 {
+	text-align: center;
+}
+
+form {
+	margin-top: 150px;
+}
+
+span {
+	margin-top: 15px;
+	font-size: 12px;
+	color: #cfcfcf;
+}
+
+label {
+	display: block;
+	margin: 30px auto 0;
+	text-align: center;
+	font-size: 15px;
+	color: #cfcfcf;
+}
+
+.row>div {
+	text-align: center;
+}
+
+.custominput {
+	display: block;
+	width: 100%;
+	margin-top: 5px;
+	padding-bottom: 5px;
+	font-size: 16px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+	text-align: center;
+}
+
+.btn-submit {
+	margin-top: 50px;
+	border: 1px solid #3DB2FF;
+	color: #3DB2FF;
+}
+
+.btn-submit:hover {
+	background: #3DB2FF;
+	color: #ffffff;
+}
+
+.forgot-pass {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	text-align: center;
+	font-size: 12px;
+	color: #cfcfcf;
+}
+
+.forgot-item {
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	margin-top: 4px;
+	margin-left: 4px;
+	margin-right: 4px;
+}
+
+.find_div {
+	border-right: 1px solid rgba(0, 0, 0, 0.4);
+}

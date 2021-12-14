@@ -9,10 +9,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="${path}/resources/css/join.css">
-<link rel="stylesheet" href="${path}/resources/js/join.js">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="${path}/resources/js/join.js"></script>
 
 </head>
 <body>
@@ -46,22 +46,18 @@
 				<h3>회원가입</h3>
 				
 				<!-- 이메일 입력 -->
-				<label> 
-					<p class="email">이메일</p>
-				</label>
+				<label> 이메일</label>
 				<div class="row form-group">
 					<div class="col-lg-9">
 						<input type="Email" class="custominput" id="user_email"  name="user_email">
 					</div>
 					<div class="col-lg-3">
-						<button type="button" class="btn btn-outline-secondary btn-block" id="emailCheckBtn">중복확인</button>
+						<button type="button" class="btn btn-check btn-block" id="emailCheckBtn">중복확인</button>
 					</div>
 				</div>
 
 				<!-- 비밀번호 입력 -->
-				<label>
-				      <p class="email">비밀번호</p>
-			    </label>
+				<label>비밀번호<p id="msg1"></p></label>
 				<div class="row form-group">
 					<div class="col-lg-12">
 						<input type="password" class="custominput" id="user_pw"  name="user_pw">
@@ -69,9 +65,7 @@
 				</div>
 
 				<!-- 비밀번호 확인 입력 -->
-				<label>
-				      <p class="email">비밀번호 확인</p>
-			    </label>
+				<label>비밀번호 확인<p id="msg2"></p></label>
 			    
 				<div class="row form-group">
 					<div class="col-lg-12">
@@ -80,33 +74,26 @@
 				</div>
 
 				<!-- 닉네임 입력 -->
-				<label>
-				      <p class="email">닉네임</p>
-			    </label>
+				<label>닉네임</label>
 				<div class="row form-group">
 					<div class="col-lg-9">
 						<input type="text" class="custominput" id="user_name"  name="user_name">
 					</div>
 					<div class="col-lg-3">
-						<button type="button" class="btn btn-outline-secondary btn-block" id="nameCheckBtn">중복확인</button>
+						<button type="button" class="btn btn-check btn-block" id="nameCheck">중복확인</button>
 					</div>
 				</div>
 
 				<!-- 전화번호 입력 -->
-				
-				<label>
-				      <p class="email">휴대전화</p>
-			    </label>
+				<label>휴대전화</label>
 				<div class="row form-group">
 					<div class="col-lg-12">
 						<input type="text" class="custominput" id="user_phone" name="user_phone">
 					</div>
 				</div>
 				
-				<!-- 전화번호 입력 -->
-				<label>
-					<p class="email">성별</p>
-			    </label>
+				<!-- 성별 입력 -->
+				<label>성별</label>
 				<div class="row form-group" data-toggle="buttons">
 					<div class="col-lg-6">
 						<label class="btn btn-outline-secondary btn-block">
@@ -124,7 +111,7 @@
 			  	<div class="row form-group button-group">
 					<div class="col-lg-2"></div>
 					<div class="col-lg-8">
-			  			<input type="submit" class="btn btn-outline-primary btn-block" value="회원가입">
+			  			<input type="submit" class="btn btn-check btn-block" value="회원가입">
 					</div>
 					<div class="col-lg-2"></div>
 				</div>
@@ -132,7 +119,7 @@
 			  	<div class="row form-group">
 					<div class="col-lg-2"></div>
 					<div class="col-lg-8">
-			  			<input type="submit" class="btn btn-outline-secondary btn-block" value="이전">
+						<a href="./">로그인 페이지로</a>
 					</div>
 					<div class="col-lg-2"></div>
 				</div>
