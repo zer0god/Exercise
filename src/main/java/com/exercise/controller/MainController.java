@@ -31,7 +31,7 @@ public class MainController {
 	@RequestMapping(value =  "/", method = RequestMethod.GET)
 	public String main(HttpSession session) throws Exception {
 		
-		if(session.getAttribute("user") ==  null) return "main/login";
+		// if(session.getAttribute("user") ==  null) return "main/login";
 		
 		return "main/main";
 	}
