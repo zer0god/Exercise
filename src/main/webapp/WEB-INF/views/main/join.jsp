@@ -130,5 +130,6 @@
 	</div>
 </div>
 
+<script src="${path}/resources/js/common.js"></script>
 </body>
 </html>
