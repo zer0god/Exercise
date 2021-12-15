@@ -27,31 +27,22 @@
 				)
 	</insert>
 	
-	<!-- 이메일 인증번호 불러오기 SQL-->
-	<select id="getAuthmail" resultType="int">
-		SELECT auth_mail
-		FROM AUTHMAIL
-		WHERE user_email =  #{user_email}
+	<!-- 이메일 찾기 SQL -->
+	<select id="findEmailAction" resultType="String">
+		SELECT user_name
+		FROM USERS
+		WHERE user_name = #{user_name}
+		
 	</select>
 	
-	<!-- 이메일 인증번호 저장 SQL-->
-	<insert id="setAuthmail">
-		INSERT INTO AUTHMAIL
-		VALUES (#{user_email}, #{auth_mail})
-	</insert>
-	
-	<!-- 이메일 인증번호 수정 SQL -->
-	<update id="resetAuthmail">
-		UPDATE AUTHMAIL
-		SET auth_mail = #{auth_mail}
-		WHERE 	user_email = #{user_email}
-	</update>
-	
-	<!-- 이메일 인증번호 삭제 SQL -->
-	<delete id="deleteAuthmail">
-		DELETE FROM AUTHMAIL
-		WHERE 	user_email = #{user_email}
-	</delete>
+	<!-- 로그인 SQL -->
+	<select id="loginAction" resultType="Users">
+	<!-- select 2개 이상이면 config에 입력 뒤에 불러오기 -->
+		SELECT *
+		FROM USERS
+		WHERE user_email = #{user_email}
+		AND user_pw = #{user_pw}
+	</select>
 	
 
 </mapper>

@@ -67,7 +67,11 @@
 			<div class="col-lg-3"></div>
 		</div>
 	</div>
-
-<script src="${path}/resources/js/common.js"></script>
+<script>
+$(document).ready(function() {
+	var msg = '${msg}';
+	if(msg != '') alert(msg); 
+});
+</script>
 </body>
 </html>

@@ -262,6 +262,11 @@
 <script src="${path}/resources/vendor/chart.js/Chart.min.js"></script>
 <script src="${path}/resources/js/demo/chart-area-demo.js"></script>
 <script src="${path}/resources/js/demo/chart-pie-demo.js"></script>
-<script src="${path}/resources/js/common.js"></script>
+<script>
+$(document).ready(function() {
+	var msg = '${msg}';
+	if(msg != '') alert(msg); 
+});
+</script>
 </body>
 </html>

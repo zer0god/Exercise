@@ -39,9 +39,8 @@ public class UsersDAOImpl implements UsersDAO {
 	}
 
 	@Override
-	public Users login(Users users) throws Exception {
-		
-		return null;
+	public Users loginAction(Users users) throws Exception {
+		return sqlSession.selectOne(SESSION + ".loginAction", users);
 	}
 
 }

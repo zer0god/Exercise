@@ -49,7 +49,7 @@
 						이메일
 					</label>
 					<div class="form-group">
-						<input type="Email" class="custominput"> 
+						<input type="Email" class="custominput" name="user_email"> 
 					</div>
 	
 					<!-- 비밀번호 입력 -->
@@ -57,7 +57,7 @@
 					      비밀번호
 				    </label>
 					<div class="form-group">
-						<input type="password" class="custominput">
+						<input type="password" class="custominput" name="user_pw">
 					</div>
 					
 
@@ -92,7 +92,11 @@
 			<div class="col-lg-3"></div>
 		</div>
 	</div>
-
-<script src="${path}/resources/js/common.js"></script>
+<script>
+$(document).ready(function() {
+	var msg = '${msg}';
+	if(msg != '') alert(msg); 
+});
+</script>
 </body>
 </html>

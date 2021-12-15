@@ -31,7 +31,7 @@ public class MainController {
 	@RequestMapping(value =  "/", method = RequestMethod.GET)
 	public String main(HttpSession session) throws Exception {
 		
-		// if(session.getAttribute("user") ==  null) return "main/login";
+		if(session.getAttribute("users") ==  null) return "main/login";
 		
 		return "main/main";
 	}
@@ -41,12 +41,6 @@ public class MainController {
 	public String join() throws Exception {
 		
 		return "main/join";
-	}
-	// url 패턴이 'path/login'인 경우
-	@RequestMapping(value =  "/login", method = RequestMethod.GET)
-	public String login() throws Exception {
-		
-		return "main/login";
 	}
 	
 	// url 패턴이 'path/findEmail'인 경우
@@ -99,7 +93,7 @@ public class MainController {
 		System.out.println(users.getUser_phone());
 		usersService.joinAction(users);
 		
-		return "redirect:/login";
+		return "redirect:/";
 		// 보이는 url/joinAction 실제는 return 값의 url
 		// 회원가입 된 상태에서는 url 변경해줘야하므로 redirect
 		// redirect:/login == http://localhost:8088/login
@@ -108,13 +102,13 @@ public class MainController {
 	// url 패턴이 'path/findEmailAction'인 경우
 	@RequestMapping(value = "/findEmailAction", method = RequestMethod.POST)
 	// POST 결과값 필요없음 responsebody 필요없음
-	public String findEmailAction(String user_name, RedirectAttributes ra) throws Exception {
+	public String findEmailAction(String user_name, String user_email, RedirectAttributes ra) throws Exception {
 		
-		String result = usersService.findEmailAction(user_name);
+		int result = usersService.findEmailAction(user_name);
 		String url = null;
 		
-		
-		if(result != null) {
+		if(result != 0) {
+			
 			ra.addFlashAttribute("resultType", "email");
 			// url 뒤에 ?resultType=email이지만 보이지않음
 			ra.addFlashAttribute("result", "true");
@@ -137,22 +131,21 @@ public class MainController {
 	@RequestMapping(value="/loginAction", method=RequestMethod.POST)
 	public String loginAction(Users users,HttpSession session, RedirectAttributes ra) throws Exception{
 		
-		int result = usersService.loginAction(users);
+		Users result = usersService.loginAction(users);
 		String url = null;
 		
-		if(result == 0) {
-			
-			session.setAttribute("user_Email", users.getUser_email());
-			url = "redirect:/main";
-			
+		if(result != null) {
+			session.setAttribute("users", users);
+			url = "redirect:/";
 		}
 		
 		else {
 			ra.addFlashAttribute("msg", "로그인 정보가 일치하지 않습니다.");
-			return url ="redirect:/login";
+			url ="redirect:/";
 		}
-	
+		
 		return url;
+		
 	}
 	
 	

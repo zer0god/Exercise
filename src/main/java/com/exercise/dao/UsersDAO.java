@@ -8,6 +8,6 @@ public interface UsersDAO {
 	public String nameCheck(String user_name) throws Exception;
 	public void join(Users users) throws Exception;
 	public String findEmailAction(String user_email) throws Exception;
-	public Users login(Users users) throws Exception;
+	public Users loginAction(Users users) throws Exception;
 	
 }
