@@ -34,13 +34,20 @@ public class UsersDAOImpl implements UsersDAO {
 	}
 
 	@Override
-	public String findEmailAction(String user_email) throws Exception {
-		return sqlSession.selectOne(SESSION + ".findEmailAction", user_email);
+	public String findEmailAction(String user_name) throws Exception {
+		return sqlSession.selectOne(SESSION + ".findEmailAction", user_name);
+	}
+	
+	@Override
+	public Users findPwAction(Users users) throws Exception {
+		return sqlSession.selectOne(SESSION + ".findPwAction", users);
 	}
 
 	@Override
 	public Users loginAction(Users users) throws Exception {
 		return sqlSession.selectOne(SESSION + ".loginAction", users);
 	}
+
+
 
 }

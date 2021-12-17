@@ -29,12 +29,26 @@
 	
 	<!-- 이메일 찾기 SQL -->
 	<select id="findEmailAction" resultType="String">
-		SELECT user_name
+		SELECT user_email
 		FROM USERS
 		WHERE user_name = #{user_name}
-		
 	</select>
 	
+	<!-- 비밀번호 찾기 SQL -->
+	<select id="findPwAction" resultType="Users">
+		SELECT *
+		FROM USERS
+		WHERE user_email = #{user_email}
+		AND user_name = #{user_name}
+	</select>
+	
+	<!-- 비밀번호 변경 SQL -->
+	<update id="resetPw">
+		UPDATE 	USERS
+		SET user_pw = #{user_pw}
+		WHERE user_email = #{user_email}
+	</update>
+
 	<!-- 로그인 SQL -->
 	<select id="loginAction" resultType="Users">
 	<!-- select 2개 이상이면 config에 입력 뒤에 불러오기 -->

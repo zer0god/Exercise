@@ -43,6 +43,8 @@
 				<c:if test="${result eq true}">
 				<p>해당 닉네임으로 등록된 이메일 : </p>
 				<h2>${resultMsg}</h2>
+				<a href="./findPw">비밀번호 찾기</a>
+				<a href="./">로그인</a>
 				</c:if>
 				<c:if test="${result eq false}">
 				<p>해당 닉네임으로 등록된 이메일이 존재하지 않습니다.</p>
@@ -50,7 +52,7 @@
 				</c:if>
 				</c:if>
 				
-				<c:if test="${resultType eq 'email'}">
+				<c:if test="${resultType eq 'password'}">
 				<h3>비밀번호 찾기</h3>
 				
 				<c:if test="${result eq true}">
@@ -60,6 +62,7 @@
 				<c:if test="${result eq false}">
 				<p>해당 닉네임과 이메일로 등록된 정보를 찾을수 없습니다.</p>
 				<a href="./findPw">비밀번호 찾기로 돌아가기</a>
+				<a href="./">로그인</a>
 				</c:if>
 				</c:if>
 												

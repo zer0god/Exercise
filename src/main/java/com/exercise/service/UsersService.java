@@ -8,7 +8,8 @@ public interface UsersService {
 	public int emailCheck(String user_email) throws Exception;
 	public int nameCheck(String user_name) throws Exception;
 	public void joinAction(Users users) throws Exception; // 반환타입 필요없음
-	public int findEmailAction(String user_name) throws Exception;
+	public String findEmailAction(String user_name) throws Exception;
+	public String findPwAction(Users users) throws Exception;
 	public Users loginAction(Users users) throws Exception;
 
 	public int setAuthnum(String user_mail) throws Exception; 

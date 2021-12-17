@@ -58,6 +58,13 @@ public class MainController {
 		return "main/findPw";
 	}
 	
+	// url 패턴이 'path/findResult'인 경우
+	@RequestMapping(value =  "/findResult", method = RequestMethod.GET)
+	public String findResult() throws Exception {
+		
+		return "main/findResult";
+	}
+	
 	// url 패턴이 'path/emailCheck'인 경우
 	// http://localhost:8088/emailCheck?
 	@RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
@@ -102,12 +109,12 @@ public class MainController {
 	// url 패턴이 'path/findEmailAction'인 경우
 	@RequestMapping(value = "/findEmailAction", method = RequestMethod.POST)
 	// POST 결과값 필요없음 responsebody 필요없음
-	public String findEmailAction(String user_name, String user_email, RedirectAttributes ra) throws Exception {
+	public String findEmailAction(String user_name, RedirectAttributes ra) throws Exception {
 		
-		int result = usersService.findEmailAction(user_name);
+		String result = usersService.findEmailAction(user_name);
 		String url = null;
 		
-		if(result != 0) {
+		if(result != null) {
 			
 			ra.addFlashAttribute("resultType", "email");
 			// url 뒤에 ?resultType=email이지만 보이지않음
@@ -126,6 +133,33 @@ public class MainController {
 			
 		}
 	}
+	
+	// url 패턴이 'path/findPwAction'인 경우
+	@RequestMapping(value="/findPwAction", method=RequestMethod.POST)
+	public String findPwAction(Users users, RedirectAttributes ra) throws Exception{
+		
+		String result = usersService.findPwAction(users);
+		String url = null;
+		
+		if(result != null) {
+			
+			ra.addFlashAttribute("resultType", "password");
+			ra.addFlashAttribute("result", "true");
+			ra.addFlashAttribute("resultMsg", result);
+			
+			return url = "redirect:/findResult";
+		}
+		
+		else {
+			
+			ra.addFlashAttribute("resultType", "password");
+			ra.addFlashAttribute("result", "false");
+			
+			return url = "redirect:/findResult";
+			
+		}
+	}
+	
 	
 	// url 패턴이 'path/loginAction'인 경우
 	@RequestMapping(value="/loginAction", method=RequestMethod.POST)
