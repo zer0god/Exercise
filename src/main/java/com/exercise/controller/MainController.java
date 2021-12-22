@@ -33,6 +33,7 @@ public class MainController {
 		
 		if(session.getAttribute("users") ==  null) return "main/login";
 		
+		// view 폴더의 "mail", 만약 views/main/main이면 "main/main"
 		return "main/main";
 	}
 	
@@ -80,7 +81,7 @@ public class MainController {
 	// url 패턴이 'path/nameCheck'인 경우
 	// http://localhost:8088/nameCheck?
 	@RequestMapping(value = "/nameCheck", method = RequestMethod.GET)
-	//반환값을 페이지에 출력
+	// 반환값을 페이지에 출력
 	@ResponseBody
 	public String nameCheck(String user_name) throws Exception	{ //parameter
 		
@@ -138,16 +139,15 @@ public class MainController {
 	@RequestMapping(value="/findPwAction", method=RequestMethod.POST)
 	public String findPwAction(Users users, RedirectAttributes ra) throws Exception{
 		
-		String result = usersService.findPwAction(users);
-		String url = null;
+		int result = usersService.findPwAction(users);
 		
-		if(result != null) {
+		if(result != -1) {
 			
 			ra.addFlashAttribute("resultType", "password");
 			ra.addFlashAttribute("result", "true");
 			ra.addFlashAttribute("resultMsg", result);
 			
-			return url = "redirect:/findResult";
+			return "redirect:/findResult";
 		}
 		
 		else {
@@ -155,7 +155,7 @@ public class MainController {
 			ra.addFlashAttribute("resultType", "password");
 			ra.addFlashAttribute("result", "false");
 			
-			return url = "redirect:/findResult";
+			return "redirect:/findResult";
 			
 		}
 	}

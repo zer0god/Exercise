@@ -9,6 +9,7 @@ public interface UsersDAO {
 	public void join(Users users) throws Exception;
 	public String findEmailAction(String user_name) throws Exception;
 	public Users findPwAction(Users users) throws Exception;
+	public void resetpw(Users users) throws Exception;
 	public Users loginAction(Users users) throws Exception;
 	
 }

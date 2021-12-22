@@ -44,9 +44,16 @@ public class UsersDAOImpl implements UsersDAO {
 	}
 
 	@Override
+	public void resetpw(Users users) throws Exception {
+		// update, insert, delete는 int 타입이고, 반환 할 필요 없어서 void
+		sqlSession.update(SESSION + ".resetPw", users);
+	}
+
+	@Override
 	public Users loginAction(Users users) throws Exception {
 		return sqlSession.selectOne(SESSION + ".loginAction", users);
 	}
+
 
 
 

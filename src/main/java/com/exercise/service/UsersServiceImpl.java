@@ -4,10 +4,18 @@ import java.util.Properties;
 import java.util.Random;
 
 import javax.inject.Inject;
+import javax.mail.Address;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.springframework.stereotype.Service;
 
 import com.exercise.dao.UsersDAO;
+import com.exercise.util.Mail;
 import com.exercise.vo.Users;
 
 @Service //구현하는 서비스 위에
@@ -86,14 +94,16 @@ public class UsersServiceImpl implements UsersService {
 	}
 	
 	@Override
-	public String findPwAction(Users users) throws Exception {
+	public int findPwAction(Users users) throws Exception {
 		
-		String result = null;
+		int result = 0;
 		users = dao.findPwAction(users);
 		
 		Random rd = new Random();
 		StringBuffer buf = new StringBuffer();
-
+		
+		if( users == null ) return -1;
+		
 		for(int i=0;i<7;i++){
 		    if(rd.nextBoolean()){
 		        buf.append((char)((int)(rd.nextInt(26))+97));
@@ -104,12 +114,14 @@ public class UsersServiceImpl implements UsersService {
 		    users.setUser_pw(buf.toString());
 		}
 		
+		dao.resetpw(users); // 보낸 pw mapper에 update
+		
 		// users.setUser_pw(user_pw);
 		
 		String from = "zerogod0703@gmail.com";
 		String to	= users.getUser_email();
 		String subject = "임시비밀번호 메일";
-		String content = "다음 비밀번호를 입력하세요. <br> <h2>" +  + "</h2>";
+		String content = "다음 비밀번호를 입력하세요. <br> <h2>" + users.getUser_pw() + "</h2>";
 		
 		// 환경설정 맞추기
 		Properties p = new Properties();
@@ -124,8 +136,33 @@ public class UsersServiceImpl implements UsersService {
 		p.put("mail.smtp.socketFactory.fallback", "false");
 		p.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 		p.put("mail.smtp.protocols", "TLSv1.2");
-		 
 		
+		try {
+		
+			Authenticator auth = new Mail(); // 로그인
+			Session s = Session.getInstance(p, auth); // 세션 받아옴
+			s.setDebug(true); // 디버깅
+			
+			MimeMessage msg = new MimeMessage(s); // 세션을 이용해 환경 맞추기
+			
+			//Address로 받아오기
+			Address fromAddr = new InternetAddress(from);
+			Address toAddr	= new InternetAddress(to);
+			
+			//Address로 받아온 거 msg에 입력
+			msg.setSubject(subject);
+			msg.setRecipient(Message.RecipientType.TO, toAddr);
+			msg.setFrom(fromAddr);
+			msg.setContent(content, "text/html; charset=UTF-8");
+			
+			Transport.send(msg); // 모두 작성 후 보냄
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			result = -1;
+		}
+		 
+		return result;
 	}
 
 	
@@ -139,13 +176,6 @@ public class UsersServiceImpl implements UsersService {
 	public Users loginAction(Users users) throws Exception {
 
 		return dao.loginAction(users);
-	}
-	
-
-	@Override
-	public int setAuthnum(String user_mail) throws Exception {
-
-		return 0;
 	}
 
 
