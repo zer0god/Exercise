@@ -58,5 +58,50 @@
 		AND user_pw = #{user_pw}
 	</select>
 	
+	<!-- days_id 작성 SQL  -->
+	<insert id="days">
+		INSERT INTO DAYS 
+		VALUES (#{days_id}, #{days}, #{user_email))
+	</insert>
+	
+	<!-- part_sporting_id 작성 SQL -->
+	<insert id="part_sporting">
+		INSERT INTO PART_SPORTING
+		VALUES (#{part_sporting_id}, #{part_sporting}, #{days_id})
+	</insert>
+	
+	<!-- part_data_id 작성 SQL -->
+	<insert id="part_data">
+		INSERT INTO PART_DATA
+		VALUES (
+			#{part_data_id},#{part_weghit},#{part_sets},#{part_number},
+			#{part_heart}, #{part_kcal}, #{part_time},
+			#{part_sporting_id}, #{part_id}
+				)
+	</insert>
+	
+	<!-- part_sporting list 불러오기 SQL -->
+	<select id="getPart_SportingList" resultType="Part_Sporting">
+		SELECT *
+		FROM PART_SPORTING
+		WHERE days_id = #{days_id}
+	</select>
+	
+	<!-- part_data_id list 불러오기 SQL -->
+	<select id="getPart_DataList" resultType="Part_Data">
+		SELECT *
+		FROM PART_DATA
+		WHERE part_sporting_id = #{part_sporting_id}
+	</select>
+	
+	<!-- days list 불러오기 SQL -->
+	<select id="getDateData" resultType="Days">
+		SELECT *
+		FROM DAYS
+		WHERE days like #{days}
+		AND user_email = #{user_email}
+	</select>
+	
+	
 
 </mapper>
